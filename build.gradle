@@ -1,0 +1,40 @@
+plugins {
+	id 'org.springframework.boot' version '2.6.4'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'br.com.gj'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.apache.camel.springboot:camel-spring-boot-starter:3.15.0'
+	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.apache.camel:camel-rabbitmq:3.15.0")
+	implementation("org.apache.camel:camel-jackson:3.15.0")
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.13.2")
+	implementation("net.dv8tion:JDA:5.0.0-alpha.9")
+	implementation 'org.apache.commons:commons-lang3:3.0'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.amqp:spring-rabbit-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
